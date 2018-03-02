@@ -1,6 +1,6 @@
 {
   "name": "@ecliptic/mnstr",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A ReasonML universal application framework",
   "main": "index.js",
   "scripts": {
