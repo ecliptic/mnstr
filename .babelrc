@@ -1,0 +1,40 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "Chrome >= 52",
+            "FireFox >= 44",
+            "Safari >= 7",
+            "Explorer 11",
+            "last 4 Edge versions"
+          ]
+        },
+        "useBuiltIns": true
+      }
+    ],
+    "react",
+    "stage-1"
+  ],
+  "plugins": [
+    "transform-class-properties",
+    "jsx-display-if",
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./src"
+        ],
+        "alias": {
+          "components": "./src/components",
+          "clients": "./src/clients",
+          "utils": "./src/utils",
+          "state": "./src/state",
+          "data": "./src/data"
+        }
+      }
+    ]
+  ]
+}
