@@ -17,7 +17,8 @@
     "bs-abstract",
     "reason-react",
     "reason-apollo",
-    "bs-apollo-server-express"
+    "bs-apollo-server-express",
+    "bs-promise-router"
   ],
   "reason": {
     "react-jsx": 2

@@ -2,8 +2,16 @@
 'use strict';
 
 var Curry = require("bs-platform/lib/js/curry.js");
+var Express = require("bs-express/src/Express.js");
+var Js_option = require("bs-platform/lib/js/js_option.js");
 var Caml_array = require("bs-platform/lib/js/caml_array.js");
 var Promise$BsAbstract = require("bs-abstract/src/implementations/Promise.bs.js");
+
+function $$parseInt$1(string) {
+  return parseInt(string, 10);
+}
+
+var Text = /* module */[/* parseInt */$$parseInt$1];
 
 function resolve(prim) {
   return Promise.resolve(prim);
@@ -99,6 +107,60 @@ var Env = /* module */[
   /* isNode */isNode
 ];
 
+function errorToJson(exn) {
+  var str = JSON.stringify(exn);
+  if (str !== undefined) {
+    return JSON.parse(str);
+  } else {
+    return null;
+  }
+}
+
+function heartbeat(_, res) {
+  Express.Response[/* sendString */2]("ok", res);
+  return Promise.resolve(undefined);
+}
+
+function handleErrors(isDev) {
+  return Express.Middleware[/* fromError */4]((function (_, err, _$1, res) {
+                var error = errorToJson(err);
+                var json = { };
+                json["success"] = false;
+                if (isDev) {
+                  json["error"] = error;
+                }
+                return Express.Response[/* sendJson */3](json, Express.Response[/* status */9](/* InternalServerError */47)(res));
+              }));
+}
+
+var Http = /* module */[
+  /* errorToJson */errorToJson,
+  /* heartbeat */heartbeat,
+  /* handleErrors */handleErrors
+];
+
+function primaryUuid(knex, table, column) {
+  var colName = Js_option.getWithDefault("id", (column == null) ? /* None */0 : [column]);
+  return table.uuid(colName).primary().defaultTo(knex.raw("uuid_generate_v4()")).comment("The uuid primary key.");
+}
+
+function foreignUuid(table, column, reference, required) {
+  var col = table.uuid(column);
+  if (required) {
+    col.notNullable();
+  }
+  table.foreign(column).references(reference.column).inTable(reference.table);
+  return col;
+}
+
+var Database = /* module */[
+  /* primaryUuid */primaryUuid,
+  /* foreignUuid */foreignUuid
+];
+
+exports.Text = Text;
 exports.Promise = Promise$1;
 exports.Env = Env;
+exports.Http = Http;
+exports.Database = Database;
 /* isBrowser Not a pure module */

@@ -2,36 +2,42 @@
 'use strict';
 
 var MnstrUtils = require("./MnstrUtils.bs.js");
-var MnstrApiClient = require("./MnstrApiClient.bs.js");
-var MnstrBrowserSession = require("./MnstrBrowserSession.bs.js");
+var MnstrClient = require("./client/MnstrClient.bs.js");
+var MnstrServer = require("./server/MnstrServer.bs.js");
+var MnstrAdapters = require("./MnstrAdapters.bs.js");
 
-var ApiClient = /* module */[
-  /* assign */MnstrApiClient.assign,
-  /* empty */MnstrApiClient.empty,
-  /* HttpLink */MnstrApiClient.HttpLink,
-  /* AuthLink */MnstrApiClient.AuthLink,
-  /* ErrorLink */MnstrApiClient.ErrorLink,
-  /* Cache */MnstrApiClient.Cache,
-  /* asQueryString */MnstrApiClient.asQueryString,
-  /* parseResponse */MnstrApiClient.parseResponse,
-  /* query */MnstrApiClient.query,
-  /* mutate */MnstrApiClient.mutate,
-  /* make */MnstrApiClient.make
+var Client = /* module */[
+  /* BrowserSession */MnstrClient.BrowserSession,
+  /* assign */MnstrClient.assign,
+  /* empty */MnstrClient.empty,
+  /* HttpLink */MnstrClient.HttpLink,
+  /* AuthLink */MnstrClient.AuthLink,
+  /* ErrorLink */MnstrClient.ErrorLink,
+  /* Cache */MnstrClient.Cache,
+  /* asQueryString */MnstrClient.asQueryString,
+  /* parseResponse */MnstrClient.parseResponse,
+  /* query */MnstrClient.query,
+  /* mutate */MnstrClient.mutate,
+  /* make */MnstrClient.make
 ];
 
-var ClientSession = /* module */[
-  /* Keys */MnstrBrowserSession.Keys,
-  /* get */MnstrBrowserSession.get,
-  /* clear */MnstrBrowserSession.clear,
-  /* logout */MnstrBrowserSession.logout
+var Server = /* module */[
+  /* Router */MnstrServer.Router,
+  /* Http */MnstrServer.Http
 ];
+
+var Adapters = /* module */[/* Express */MnstrAdapters.Express];
 
 var Utils = /* module */[
+  /* Text */MnstrUtils.Text,
   /* Promise */MnstrUtils.Promise,
-  /* Env */MnstrUtils.Env
+  /* Env */MnstrUtils.Env,
+  /* Http */MnstrUtils.Http,
+  /* Database */MnstrUtils.Database
 ];
 
-exports.ApiClient = ApiClient;
-exports.ClientSession = ClientSession;
+exports.Client = Client;
+exports.Server = Server;
+exports.Adapters = Adapters;
 exports.Utils = Utils;
 /* MnstrUtils Not a pure module */

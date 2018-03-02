@@ -1,5 +1,9 @@
 open BsAbstract;
 
+module BrowserSession = {
+  include MnstrClientBrowserSession;
+};
+
 [@bs.module "isomorphic-fetch"] external isomorphicFetch : 'polyfill = "default";
 
 [@bs.module "apollo-link-error"] external onError : 'a => ReasonApolloTypes.apolloLink = "";
@@ -126,7 +130,7 @@ module ErrorLink = {
           let code = error##result##error##code |> toOption |> getWithDefault("");
           if (code === "invalid_token") {
             Js.log("[Authentication error]: Clearing session.");
-            MnstrBrowserSession.logout()
+            BrowserSession.logout()
           } else {
             Js.log({j|[Network error]: $error|j})
           }

@@ -1,9 +1,13 @@
-module ApiClient = {
-  include MnstrApiClient;
+module Client = {
+  include MnstrClient;
 };
 
-module ClientSession = {
-  include MnstrBrowserSession;
+module Server = {
+  include MnstrServer;
+};
+
+module Adapters = {
+  include MnstrAdapters;
 };
 
 module Utils = {
