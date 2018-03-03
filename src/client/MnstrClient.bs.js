@@ -13,15 +13,10 @@ var IsomorphicFetch = require("isomorphic-fetch");
 var Js_null_undefined = require("bs-platform/lib/js/js_null_undefined.js");
 var Option$BsAbstract = require("bs-abstract/src/implementations/Option.bs.js");
 var ApolloLinkError = require("apollo-link-error");
+var MnstrClientBrowser = require("./MnstrClientBrowser.bs.js");
 var ApolloInMemoryCache = require("reason-apollo/src/ApolloInMemoryCache.bs.js");
-var MnstrClientBrowserSession = require("./MnstrClientBrowserSession.bs.js");
 
-var BrowserSession = /* module */[
-  /* Keys */MnstrClientBrowserSession.Keys,
-  /* get */MnstrClientBrowserSession.get,
-  /* clear */MnstrClientBrowserSession.clear,
-  /* logout */MnstrClientBrowserSession.logout
-];
+var Browser = /* module */[/* Session */MnstrClientBrowser.Session];
 
 function assign(prim, prim$1) {
   return Object.assign(prim, prim$1);
@@ -98,7 +93,7 @@ function make$2() {
                   var code = Js_option.getWithDefault("", Js_primitive.null_undefined_to_opt(networkError.result.error.code));
                   if (code === "invalid_token") {
                     console.log("[Authentication error]: Clearing session.");
-                    return MnstrClientBrowserSession.logout(/* () */0);
+                    return MnstrClientBrowser.Session[/* logout */3](/* () */0);
                   } else {
                     console.log("[Network error]: " + (String(networkError) + ""));
                     return /* () */0;
@@ -164,7 +159,7 @@ function make$4(uri, getSession, connectToDevTools, _) {
   return ReasonApollo.createApolloClient(make$3(/* () */0), ApolloLink.from(links), /* Some */[match !== 0 ? false : true], /* None */0, /* Some */[connectToDevTools], /* None */0, /* () */0);
 }
 
-exports.BrowserSession = BrowserSession;
+exports.Browser = Browser;
 exports.assign = assign;
 exports.empty = empty;
 exports.HttpLink = HttpLink;

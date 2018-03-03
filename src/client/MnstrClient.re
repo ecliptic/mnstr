@@ -1,7 +1,7 @@
 open BsAbstract;
 
-module BrowserSession = {
-  include MnstrClientBrowserSession;
+module Browser = {
+  include MnstrClientBrowser;
 };
 
 [@bs.module "isomorphic-fetch"] external isomorphicFetch : 'polyfill = "default";
@@ -130,7 +130,7 @@ module ErrorLink = {
           let code = error##result##error##code |> toOption |> getWithDefault("");
           if (code === "invalid_token") {
             Js.log("[Authentication error]: Clearing session.");
-            BrowserSession.logout()
+            Browser.Session.logout()
           } else {
             Js.log({j|[Network error]: $error|j})
           }

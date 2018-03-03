@@ -7,7 +7,7 @@ var MnstrServer = require("./server/MnstrServer.bs.js");
 var MnstrAdapters = require("./MnstrAdapters.bs.js");
 
 var Client = /* module */[
-  /* BrowserSession */MnstrClient.BrowserSession,
+  /* Browser */MnstrClient.Browser,
   /* assign */MnstrClient.assign,
   /* empty */MnstrClient.empty,
   /* HttpLink */MnstrClient.HttpLink,

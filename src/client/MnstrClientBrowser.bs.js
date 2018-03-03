@@ -39,10 +39,12 @@ function clear() {
   return /* () */0;
 }
 
-var logout = clear;
+var Session = /* module */[
+  /* Keys */Keys,
+  /* get */get,
+  /* clear */clear,
+  /* logout */clear
+];
 
-exports.Keys = Keys;
-exports.get = get;
-exports.clear = clear;
-exports.logout = logout;
+exports.Session = Session;
 /* No side effect */

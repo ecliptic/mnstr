@@ -63,19 +63,10 @@
     "husky": "^0.14.3",
     "lint-staged": "^7.0.0"
   },
-  "jest": {
-    "testURL": "http://localhost",
-    "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/react-dom"
-    ],
-    "testMatch": [
-      "<rootDir>/tests/**/?(*)(Spec|Test).bs.js"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "testEnvironment": "node"
+  "resolutions": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "graphql": "0.11.7"
   },
   "lint-staged": {
     "src/**/*.re": [
