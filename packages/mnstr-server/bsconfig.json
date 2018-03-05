@@ -12,11 +12,10 @@
     }
   ],
   "bs-dependencies": [
+    "@ecliptic/mnstr-core",
     "bs-express",
     "bs-graphql",
     "bs-abstract",
-    "reason-react",
-    "reason-apollo",
     "bs-apollo-server-express",
     "bs-promise-router"
   ],

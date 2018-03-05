@@ -1,9 +1,13 @@
+module Adapters = {
+  include MnstrServerAdapters;
+};
+
 module Router = {
   include MnstrServerRouter;
 };
 
 module Http = {
-  open MnstrAdapters.Express;
+  open Adapters.Express;
   module App = Express.App;
   module Middleware = Express.Middleware;
   module Response = Express.Response;
@@ -22,7 +26,7 @@ module Http = {
       /* Handle plain REST requests */
       Use(MnstrServerRouter.Web.make(~routes=?routes, ())),
       /* Handle errors */
-      Use(MnstrUtils.Http.handleErrors(~isDev))
+      Use(MnstrServerUtils.Http.handleErrors(~isDev))
     ];
     (
       switch middleware {

@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ecliptic/reason-events.git"
+    "url": "git+https://github.com/ecliptic/mnstr.git"
   },
   "keywords": [
     "bucklescript",
@@ -24,9 +24,9 @@
   "author": "Brandon Konkle <brandon@ecliptic.io> (http://ecliptic.io)",
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/ecliptic/reason-events/issues"
+    "url": "https://github.com/ecliptic/mnstr/issues"
   },
-  "homepage": "https://github.com/ecliptic/reason-events#readme",
+  "homepage": "https://github.com/ecliptic/mnstr#readme",
   "dependencies": {
     "@ecliptic/mnstr-core": "*",
     "apollo-cache-inmemory": "^1.1.9",

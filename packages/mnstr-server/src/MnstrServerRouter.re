@@ -6,7 +6,7 @@ module Web = {
     | Get(string, PromiseRouter.promiseMiddleware)
     | Post(string, PromiseRouter.promiseMiddleware);
   let make = (~routes: option(list(routes))=?, ()) => {
-    let toMount = routes |> Js.Option.getWithDefault([Get("/", MnstrUtils.Http.heartbeat)]);
+    let toMount = routes |> Js.Option.getWithDefault([Get("/", MnstrServerUtils.Http.heartbeat)]);
     let router = PromiseRouter.make();
     toMount |> List.iter((route) => switch route {
     | Get(path, route) => PromiseRouter.get(router, ~path, route)
