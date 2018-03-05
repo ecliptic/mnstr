@@ -1,0 +1,28 @@
+{
+  "name": "@ecliptic/mnstr",
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "bs-dependencies": [
+    "bs-express",
+    "bs-graphql",
+    "bs-abstract",
+    "reason-react",
+    "reason-apollo",
+    "bs-apollo-server-express",
+    "bs-promise-router"
+  ],
+  "reason": {
+    "react-jsx": 2
+  },
+  "bsc-flags": ["-bs-super-errors"],
+  "refmt": 3
+}

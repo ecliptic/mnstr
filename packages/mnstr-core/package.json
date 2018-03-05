@@ -1,0 +1,36 @@
+{
+  "name": "@ecliptic/mnstr-core",
+  "version": "0.2.0",
+  "description": "Core packages supporting the Mnstr framework",
+  "main": "index.js",
+  "scripts": {
+    "precommit": "lint-staged",
+    "build.re": "bsb -make-world",
+    "build.re.watch": "yarn build.re -w",
+    "build.re.clean": "bsb -clean-world"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ecliptic/mnstr.git"
+  },
+  "author": "Brandon Konkle <brandon@ecliptic.io> (http://ecliptic.io)",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/ecliptic/mnstr/issues"
+  },
+  "homepage": "https://github.com/ecliptic/mnstr#readme",
+  "dependencies": {
+    "bs-abstract": "^0.12.0"
+  },
+  "devDependencies": {
+    "bs-platform": "2.2.2",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.0"
+  },
+  "lint-staged": {
+    "src/**/*.re": [
+      "refmt --in-place",
+      "git add"
+    ]
+  }
+}

@@ -11,7 +11,7 @@ module Http = {
     | NoOp
     | Use(Middleware.t)
     | UseOnPath(string, Middleware.t);
-  let make = (~middleware=?, ~routes, ~bodyLimit="100kb", ~port=?, ~isDev=false, ~onListen=?, ()) => {
+  let make = (~middleware=?, ~routes=?, ~bodyLimit="100kb", ~port=?, ~isDev=false, ~onListen=?, ()) => {
     let app = App.make();
     let default = [
       Use(isDev ? Morgan.make("dev") : Morgan.make("combined")),
@@ -20,7 +20,7 @@ module Http = {
       /* If this is dev, attach the GraphiQL middleware */
       isDev ? UseOnPath("/graphiql", GraphQl.graphiql) : NoOp,
       /* Handle plain REST requests */
-      Use(MnstrServerRouter.Web.make(~routes, ())),
+      Use(MnstrServerRouter.Web.make(~routes=?routes, ())),
       /* Handle errors */
       Use(MnstrUtils.Http.handleErrors(~isDev))
     ];
@@ -41,4 +41,8 @@ module Http = {
     /* Start taking requests */
     App.listen(app, ~port?, ~onListen?, ())
   };
+};
+
+module Utils = {
+  include MnstrServerUtils;
 };
