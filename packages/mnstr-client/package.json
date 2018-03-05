@@ -1,6 +1,6 @@
 {
   "name": "@ecliptic/mnstr-client",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Client-side packages to support the Mnstr framework",
   "main": "index.js",
   "scripts": {
