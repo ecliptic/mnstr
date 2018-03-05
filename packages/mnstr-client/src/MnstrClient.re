@@ -4,8 +4,6 @@ module Browser = {
   include MnstrClientBrowser;
 };
 
-[@bs.module "isomorphic-fetch"] external isomorphicFetch : 'polyfill = "default";
-
 [@bs.module "apollo-link-error"] external onError : 'a => ReasonApolloTypes.apolloLink = "";
 
 [@bs.val] external fetch_ : ApolloClient.fetch = "fetch";
@@ -65,8 +63,7 @@ module HttpLink = {
   /**
      * If this is in-browser, supply fetch from the window object
      */
-  let fetch = MnstrUtils.Env.isBrowser ? Some(fetch_) : isomorphicFetch;
-  let make = (~uri) : t => ApolloLinks.createHttpLink(~uri, ~fetch?, ());
+  let make = (~uri, ~fetch=?, ()) : t => ApolloLinks.createHttpLink(~uri, ~fetch?, ());
 };
 
 /**
@@ -189,10 +186,10 @@ let mutate = (~fetchPolicy=?, ~request, client) =>
 /**
  * Initialize a new ApiClient
  */
-let make = (~uri, ~getSession=?, ~connectToDevTools, ()) => {
+let make = (~fetch=?, ~getSession=?, ~uri, ~connectToDevTools=?, ()) => {
   /* By default, every client gets an ErrorLink and an HttpLink */
   let links =
-    [|ErrorLink.make(), HttpLink.make(~uri)|]
+    [|ErrorLink.make(), HttpLink.make(~uri, ~fetch=?fetch, ())|]
     |> Js.Array.concat(
          switch getSession {
          /* If the getSession function was provided, add the AuthLink */
@@ -205,7 +202,7 @@ let make = (~uri, ~getSession=?, ~connectToDevTools, ()) => {
     ~cache=Cache.make(),
     ~link=ApolloLinks.from(links),
     ~ssrMode=MnstrUtils.Env.isBrowser ? Js.false_ : Js.true_,
-    ~connectToDevTools,
+    ~connectToDevTools=?connectToDevTools,
     ()
   )
   |> asApolloClient

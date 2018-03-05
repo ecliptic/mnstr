@@ -9,7 +9,6 @@ var ApolloLink = require("apollo-link");
 var GraphqlTag = require("graphql-tag");
 var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
 var ReasonApollo = require("reason-apollo/src/ReasonApollo.bs.js");
-var IsomorphicFetch = require("isomorphic-fetch");
 var Js_null_undefined = require("bs-platform/lib/js/js_null_undefined.js");
 var Option$BsAbstract = require("bs-abstract/src/implementations/Option.bs.js");
 var ApolloLinkError = require("apollo-link-error");
@@ -26,18 +25,11 @@ function empty() {
   return { };
 }
 
-var match = MnstrUtils.Env[/* isBrowser */0];
-
-var fetch = match !== 0 ? /* Some */[fetch] : IsomorphicFetch.default;
-
-function make(uri) {
+function make(uri, fetch, _) {
   return ApolloLinks.createHttpLink(uri, /* None */0, fetch, /* None */0, /* None */0, /* None */0, /* () */0);
 }
 
-var HttpLink = /* module */[
-  /* fetch */fetch,
-  /* make */make
-];
+var HttpLink = /* module */[/* make */make];
 
 function withAuthHeader(headers, token) {
   return {
@@ -150,13 +142,13 @@ function mutate(fetchPolicy, request, client) {
               }));
 }
 
-function make$4(uri, getSession, connectToDevTools, _) {
+function make$4(fetch, getSession, uri, connectToDevTools, _) {
   var links = /* array */[
       make$2(/* () */0),
-      make(uri)
+      make(uri, fetch, /* () */0)
     ].concat(getSession ? /* array */[make$1(getSession[0])] : /* array */[]);
   var match = MnstrUtils.Env[/* isBrowser */0];
-  return ReasonApollo.createApolloClient(make$3(/* () */0), ApolloLink.from(links), /* Some */[match !== 0 ? false : true], /* None */0, /* Some */[connectToDevTools], /* None */0, /* () */0);
+  return ReasonApollo.createApolloClient(make$3(/* () */0), ApolloLink.from(links), /* Some */[match !== 0 ? false : true], /* None */0, connectToDevTools, /* None */0, /* () */0);
 }
 
 exports.Browser = Browser;
@@ -171,4 +163,4 @@ exports.parseResponse = parseResponse;
 exports.query = query;
 exports.mutate = mutate;
 exports.make = make$4;
-/* fetch Not a pure module */
+/* MnstrUtils Not a pure module */
