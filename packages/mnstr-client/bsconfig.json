@@ -1,5 +1,5 @@
 {
-  "name": "@ecliptic/mnstr",
+  "name": "@ecliptic/mnstr-client",
   "package-specs": {
     "module": "commonjs",
     "in-source": true
@@ -12,13 +12,11 @@
     }
   ],
   "bs-dependencies": [
-    "bs-express",
+    "@ecliptic/mnstr-core",
     "bs-graphql",
     "bs-abstract",
     "reason-react",
-    "reason-apollo",
-    "bs-apollo-server-express",
-    "bs-promise-router"
+    "reason-apollo"
   ],
   "reason": {
     "react-jsx": 2

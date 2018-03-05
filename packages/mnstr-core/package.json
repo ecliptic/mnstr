@@ -1,6 +1,6 @@
 {
   "name": "@ecliptic/mnstr-core",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "description": "Core packages supporting the Mnstr framework",
   "main": "index.js",
   "scripts": {

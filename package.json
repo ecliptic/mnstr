@@ -6,6 +6,7 @@
     "type": "git",
     "url": "git+https://github.com/ecliptic/mnstr.git"
   },
+  "workspaces": ["packages/*"],
   "author": "Brandon Konkle <brandon@ecliptic.io> (http://ecliptic.io)",
   "license": "BSD-2-Clause",
   "bugs": {
