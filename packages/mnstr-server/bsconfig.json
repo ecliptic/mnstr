@@ -1,5 +1,5 @@
 {
-  "name": "@ecliptic/mnstr",
+  "name": "@ecliptic/mnstr-server",
   "package-specs": {
     "module": "commonjs",
     "in-source": true
